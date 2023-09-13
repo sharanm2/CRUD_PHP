@@ -1,8 +1,7 @@
 <?php
 require_once("db_config_file.php");
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
-    $id = $_POST['id'];
+    echo"hello".$_GET['id'];
+    $id = $_GET['id'];
     $data = "SELECT id FROM demo_table WHERE id = '$id'";
     $result = $conn->query($data);
     $a = mysqli_num_rows($result);
@@ -10,12 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
         echo "ID FOUND"; // Move this line up if you want it to be displayed
         $sql = "DELETE FROM demo_table WHERE id = '$id'";
         $conn->query($sql);
-        header("Location: read.php");
+        header("Location: crud.php");
         $conn->close();
-    } else {
+    }
+    else {
         echo "ID NOT FOUND PLEASE TRY WITH THE VALID ID ";
     }
-}
 ?>
 
 <form method="POST">
