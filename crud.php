@@ -6,7 +6,7 @@
     <title>All In One</title>
 
     <style>
-        .outer_body
+        .outerr_crud_body
         {
             width:100%;
             height:100vh;
@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <div class ="outer_body">
+    <div class ="outerr_crud_body">
  
       <div class="inner_body">
 

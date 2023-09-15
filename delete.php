@@ -1,6 +1,7 @@
 <?php
 require_once("db_config_file.php");
     echo"hello".$_GET['id'];
+    echo"".$_GET['id'];
     $id = $_GET['id'];
     $data = "SELECT id FROM demo_table WHERE id = '$id'";
     $result = $conn->query($data);
@@ -9,7 +10,7 @@ require_once("db_config_file.php");
         echo "ID FOUND"; // Move this line up if you want it to be displayed
         $sql = "DELETE FROM demo_table WHERE id = '$id'";
         $conn->query($sql);
-        header("Location: crud.php");
+        header("Location: new_php.php");
         $conn->close();
     }
     else {
