@@ -22,20 +22,25 @@ table{
     width: 100%;
     border-collapse:collapse ;
 }
-th,td{
+.table_data.table_head{
     border :1px solid balck;
-    padding:8px;
-}
-.button{
-    background-color:red;
-    text-decoration:none;
-    color:white;
+    /* padding:8px; */
+    background-color:blanchedalmond;
     
 }
 .button1{
+    background-color:red;
+    text-decoration:none;
+    color:black;
+    border-radius:10px;
+    border:none;
+    
+}
+.button{
     background-color:yellow;
     text-decoration:none;
     color:black;
+    border:none;
 }
 
 </style>
@@ -48,16 +53,16 @@ th,td{
                 <!-- <th>
                     ID
                 </th> -->
-                <th>
+                <th class="table_head">
                     Name
                 </th>
-                <th>
+                <th class="table_head">
                     Age
                 </th>
-                <th>
+                <th class="table_head">
                     Edit
                 </th>
-                <th>
+                <th class="table_head">
                     Delete
                 </th>
             </tr>
@@ -77,7 +82,7 @@ if ($result) {
     
           echo '<form action="update.php" method="POST">';
           echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
-          echo '<td><input type="text" name="name" required value="' . '"></td>';
+          echo '<td><input type="text" name="name" required value="' .$row['name']. '"></td>';
           echo  '<td><input type="text" name="age" required value="'.$row['age'].'"></td>';
           echo  '<td><input type="submit" name="create" value="save"></td>';
           echo  '</form> ';
@@ -87,10 +92,12 @@ if ($result) {
         else{
             echo "<tr>";
         // echo "<td>" . $row['id'] . "</td>";
-        echo "<td>" . $row['name'] . "</td>";
-        echo "<td>" . $row['age'] . "</td>";
-        echo "<td><button><a class='button1' href='crud.php?id=" . $row['id'] . "'>Update</a></button></td>";
-        echo "<td><button><a class='button'  href='delete.php?id=" . $row['id'] . "'>Delete</a></button></td>";
+        echo "<td class=\"table_data\">" . $row['name'] . "</td>";
+
+        echo "<td class=\"table_data\">" . $row['age'] . "</td>";
+        echo "<td class=\"table_data\"><button class='button'><a style=\"text-decoration:none;\" href='crud.php?id=" . $row['id'] . "'>Update</a></button></td>";
+
+        echo "<td class=\"table_data\"><button class='button1'><a style=\"text-decoration:none;\" href='delete.php?id=" . $row['id'] . "'>Delete</a></button></td>";
         echo "</tr>";
         }
     }
