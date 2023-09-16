@@ -39,7 +39,7 @@
                 $sql = "UPDATE demo_table SET name='$name', age='$age' WHERE id= $id";
 
                 if ($conn->query($sql) === TRUE) {
-                    header("Location: new_php.php");
+                    header("Location: boot_strap.php");
                     $conn->close();
                 } else {
                     echo "Error updating student record: " . $conn->error;

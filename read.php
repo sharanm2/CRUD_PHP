@@ -96,8 +96,8 @@ if ($result) {
 
         echo "<td class=\"table_data\">" . $row['age'] . "</td>";
         echo "<td class=\"table_data\"><button class='button'><a style=\"text-decoration:none;\" href='crud.php?id=" . $row['id'] . "'>Update</a></button></td>";
-
-        echo "<td class=\"table_data\"><button class='button1'><a style=\"text-decoration:none;\" href='delete.php?id=" . $row['id'] . "'>Delete</a></button></td>";
+echo "<td class=\"table_data\"><button class='button1'><a style=\"text-decoration:none;\" href='delete.php?id=" . $row['id'] . "'>Delete</a></button></td>";
+        
         echo "</tr>";
         }
     }

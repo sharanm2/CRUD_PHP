@@ -9,42 +9,43 @@
     <style>
         .parent {
             width: 100%;
+          
         }
 
         .upper_child {
             width: 100%;
         }
 
-        .child {
+        /* .child {
             width: 100%;
             height: 50vh;
-        }
+        } */
 
-        .upper_div {
+        /* .upper_div {
             height: 10vh;
             display: flex;
             width: 74%;
             justify-content: space-between;
             align-items: center;
-        }
+        } */
 
-        .main_table {
+        /* .main_table {
             width: 81%;
             border-collapse: collapse;
             margin: auto;
-        }
+        } */
 
-        .heading {
+        /* .heading {
             text-align: center;
             font-size: -webkit-xxx-large;
-        }
+        } */
 
         .button_inside {}
 
-        td {
+        /* td {
             text-align: center;
             height: 4vh;
-        }
+        } */
 
         .innner_edit_button {
             height: 4vh;
@@ -66,10 +67,10 @@
             color: red;
         }
 
-        .outer_add {
+        /* .outer_add {
             margin-left: 0.5%;
 
-        }
+        } */
 
         #popup {
             display: none;
@@ -128,7 +129,7 @@
         }
 
         .heading_for_the_table {
-            margin-left: 13%;
+            margin-left: -38%;
             font-size: xx-large;
 
         }
@@ -192,13 +193,13 @@
             padding: 23%;
         }
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <div class="parent">
-        <div class="upper_child">
-            <!-- <h3 class="heading">Student Details</h3> -->
-        </div>
+    <div class="container mt-5">
+
         <?php
         require_once('db_config_file.php');
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
@@ -215,6 +216,115 @@
         }
 
         ?>
+        <div class="modal " id="mywModal" style="display:none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Student Edit</h4>
+                        <button type="button" onclick="update_close()" class="btn btn-danger" data-bs-dismiss="modal" style="height: 34px;"> <i class="fas fa-times"></i></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <form action="update.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" class="form-control mx-auto" placeholder="Enter the New Name" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mx-auto" placeholder="Enter the New Age" id="age" name="age">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control mx-auto" placeholder="Enter the Age" id="id" name="id">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" onclick="update_close()" style="margin-left: 43%;">Close</button>
+                        <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="my_new_student" style="display:none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Student</h4>
+                        <button type="button" onclick="summa_close()" class="btn btn-outline-danger" style="height: 34px;"><i class="fas fa-times"></i></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <form method="POST">
+                            <div class="form-group">
+                                <input type="text" class="form-control mx-auto" placeholder="Enter the Name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control mx-auto" placeholder="Enter the Age" name="age">
+                            </div>
+                            <button type="submit" name="create" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" onclick="summa_close()" style="margin-left: 43%;">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal" id="delete_stude" style="display:none">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete a Student</h4>
+                <button type="button" onclick="delete_student_close()" class="btn btn-outline-danger" style="height: 34px;"> <i class="fas fa-times"></i></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form action="delete.php" method="GET">
+                    <input name="test" type="hidden" id="id_delete">
+                    <div class="btn-group">
+                        <button type="submit" name="submit_new" class="btn btn-outline-primary">Yes</button>
+                       
+                    </div>
+                </form><br>
+                <button onclick="delete_student_close()" class="btn btn-outline-secondary">No</button>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+                <button class="btn btn-danger" onclick="delete_student_close()">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
         <div class="child">
             <div class="outer_add">
                 <div id="popup">
@@ -234,7 +344,7 @@
                         <form action="delete.php" method="GET">
                             <input name="test" type="hidden" id="id_delete">
                             <button type="submit" name="submit_new">Yes</button>
-                            
+
                         </form>
                         <button onclick="delete_student_close()"> No </button>
                     </div>
@@ -245,24 +355,29 @@
                 <div id="popup_update">
 
                     <form action="update.php" method="POST" class=form_update style="margin-top: 26%;">
-                        <input class="name_age_input_box" type="text" placeholder="Enter the Ne2w Name" id="name" name="name"><br>
-                        <input class="name_age_input_box" type="text" placeholder="Enter the New Age" id="age" name="age"><br>
+                        <input class="name_age_input_box" type="text" placeholder="Enter the New Name" id="studentname" name="name"><br>
+                        <input class="name_age_input_box" type="text" placeholder="Enter the New Age" id="studentage" name="age"><br>
 
-                        <input class="name_age_input_box" type="hidden" placeholder="Enter the Age" id="id" name="id"><br>
+                        <input class="name_age_input_box" type="hidden" placeholder="Enter the id" id="student-id" name="student-id"><br>
 
                         <td><input type="submit" value="save"></td>';
-                       
+
                     </form>
                     <button class="button_cancel_hover" onclick="update_close()" style="margin-left: 43%;">close</button>
                 </div>
-                <div class="upper_div">
-                    <div class="heading_for_the_table">
-                        Student <span style="font-weight: bold;"> Details
+                <div class="container text-center">
+                    <div class="upper_div d-flex justify-content-between align-items-center" style="margin-left: 27%;">
+                        <div class="heading_for_the_table">
+                            Student <span style="font-weight: bold;"> Details
+                        </div>
+                        <button class="add_button btn btn-primary" onclick="summa_open()">
+                            <i class="fas fa-plus"></i>&nbsp; <b>Add Student</b>
+                        </button>
                     </div>
-                    <button style="margin-right: -22%;" class="add_button" onclick="summa_open()"><i class="fas fa-plus"></i>&nbsp; <b>Add Student</b></button>
                 </div>
 
-                <table border="1" class="main_table">
+
+                <table border="1" class="table table-hover">
                     <tr>
                         <th>
                             NAME
@@ -286,22 +401,24 @@
                         if ($result) {
                             while ($row = $result->fetch_assoc()) {
 
-                                    echo "<tr>";
-                                    // echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td class=\"table_data\">" . $row['name'] . "</td>";
-                                    echo "<td class=\"table_data\">" . $row['age'] . "</td>";
-                                    echo "<td>
+                                echo "<tr>";
+                                // echo "<td>" . $row['id'] . "</td>";
+                                echo "<td class=\"table_data\">" . $row['name'] . "</td>";
+                                echo "<td class=\"table_data\">" . $row['age'] . "</td>";
+                                echo "<td>
                     <div class=\"button_inside\">
                        
-                        <button class=\"innner_edit_button\" onclick=\"update_open(" . $row['id'] . ")\">
+                    
+                    <button class=\"innner_edit_button\" onclick=\"update_open(" . $row['id'] . ", '" . $row['name'] . "', '" . $row['age'] . "')\">
                             <i class=\"fas fa-pencil-alt\"></i> 
                         </button>
                         
-                        <button class=\"innner_delete_button\" onclick=\"delete_student(" . $row['id'] . ")\" > <i class=\"fas fa-trash-alt\"></i></button></a>
+                        <button class=\"btn btn-danger\" onclick=\"delete_student(" . $row['id'] . ")\" >
+                         <i class=\"fas fa-trash-alt\"></i></button></a>
+                         </button>
                     </div>
                 </td>";
-                                    echo "</tr>";
-                                
+                                echo "</tr>";
                             }
                             // $conn->close();
                         } else {
@@ -320,34 +437,34 @@
     }
 
     function summa_open() {
-        document.getElementById("popup").style.display = "block";
+        document.getElementById("my_new_student").style.display = "block";
     }
 
     function summa_close() {
-        document.getElementById("popup").style.display = "none";
+        document.getElementById("my_new_student").style.display = "none";
     }
 
     function delete_student(studentid) {
         document.getElementById("id_delete").value = studentid;
-        document.getElementById("popup_delete").style.display = "block";
+        document.getElementById("delete_stude").style.display = "block";
     }
 
     function delete_student_close() {
 
-        document.getElementById("popup_delete").style.display = "none";
+        document.getElementById("delete_stude").style.display = "none";
     }
 
-    function update_open(studentid) {
-        document.getElementById("popup_update").style.display = "block";
+    function update_open(studentid, studentname, studentage, ) {
+        document.getElementById("mywModal").style.display = "block";
 
 
-        document.getElementById("age").value=45;
-        document.getElementById("name").value="dfgdfg";
+        document.getElementById("age").value = studentage;
+        document.getElementById("name").value = studentname;
         document.getElementById("id").value = studentid;
     }
 
     function update_close() {
-        document.getElementById("popup_update").style.display = "none";
+        document.getElementById("mywModal").style.display = "none";
     }
 </script>
 

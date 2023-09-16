@@ -1,8 +1,11 @@
 <?php
 require_once("db_config_file.php");
-    echo"hello".$_GET['id'];
-    echo"".$_GET['id'];
-    $id = $_GET['id'];
+    echo"".$_GET['test'];
+
+
+    // echo"hello".$_GET['id_delete'];
+    // echo"".$_GET['test'];
+    $id = $_GET['test'];
     $data = "SELECT id FROM demo_table WHERE id = '$id'";
     $result = $conn->query($data);
     $a = mysqli_num_rows($result);
@@ -10,7 +13,7 @@ require_once("db_config_file.php");
         echo "ID FOUND"; // Move this line up if you want it to be displayed
         $sql = "DELETE FROM demo_table WHERE id = '$id'";
         $conn->query($sql);
-        header("Location: new_php.php");
+        header("Location: boot_strap.php");
         $conn->close();
     }
     else {
